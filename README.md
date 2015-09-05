@@ -41,6 +41,7 @@ La table MySQL est organisée comme le montre la figure ci-dessous.
 
 ![Structure de la table MySQL](http://robinroche.com/webpage/images/Table.PNG)
 
+Il est nécessaire de désactiver l'utilisation du port série par Linux, en suivant les [instructions décrites ici](http://elinux.org/RPi_Serial_Connection#Preventing_Linux_using_the_serial_port).
 
 ### Exemples de résultats
 
