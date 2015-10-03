@@ -36,25 +36,27 @@ Le code source est organisé autour des fichiers principaux suivants :
 - lecture_teleinfo.py: ce script en Python réalise la lecture du flux envoyé par le compteur sur le Raspberry Pi, et extrait les données utiles : la consommation instantanée (PAPP, puissance apparente en VA, ici notée en W pour simplifier), et le tarif heure pleine ou creuse (PTEC).
 - upload_data.php: ce script reçoit les données envoyées par le Raspberry Pi sur le serveur et les stocke dans une base de données MySQL.
 - display.php: ce script sur le serveur extrait les données de la base de données MySQL et les affiche à l'aide de HighCharts.
-
-La table MySQL est organisée comme le montre la figure ci-dessous.
-
-![Structure de la table MySQL](http://robinroche.com/webpage/images/Table.PNG)
+- restart_wifi.sh : re-démarre l'interface wlan0 (wifi) si l'envoi des données échoue.
 
 ### Installation
 
 Sur le RPi :
 
-- Copier le contenu du fichier lecture_teleinfo.py dans un nouveau fichier dans le répertoire /home/pi.
+- Copier le contenu des fichiers lecture_teleinfo.py et restart_wifi.sh dans des nouveaux fichiers dans le répertoire /home/pi.
 - Dans ce fichier, modifier l'adresse du serveur et le mot de passe.
 - Désactiver l'utilisation du port série par Linux, en suivant les [instructions décrites ici](http://elinux.org/RPi_Serial_Connection#Preventing_Linux_using_the_serial_port).
 - Lancer le script lecture_teleinfo.py à chaque minute via cron.
+- Rendre le fichier restart_wifi.sh exécutable : `chmod +x restart_wifi.sh`
 
 Sur le serveur :
 
-- Créer la base de données et la table comme indiqué plus haut.
+- Créer la base de données et la table comme indiqué plus dessous.
 - Uploader les deux fichiers PHP, et modifier les logins/mdp pour l'accès à la base de données.
 - Dans upload_data.php, modifier le mot de passe pour qu'il corresponde à celui entré sur le RPi.
+
+La table MySQL est organisée comme le montre la figure ci-dessous.
+
+![Structure de la table MySQL](http://robinroche.com/webpage/images/Table.PNG)
 
 ### Exemples de résultats
 
