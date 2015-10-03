@@ -1,7 +1,8 @@
 import serial
 import time
 import string
-import urllib
+import urllib2
+import subprocess
 
 ser = serial.Serial('/dev/ttyAMA0', baudrate=1200, bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=0, rtscts=1)
 found = 0
@@ -13,7 +14,7 @@ use_hphc = 0
 while found==0:
 	linecont = ser.readline()
 	if not linecont:
-		print 'Empty: check wiring'
+		print 'Empty: check wiring if multiple occurences'
 	# else:
 	#	print linecont // for debugging only
 	
@@ -44,5 +45,10 @@ while found==0:
 	time.sleep(1)
 
 url = "http://urlduserveur/upload_data.php?PASSWD=123456&LOAD=" + str(papp) + "&HPHC=" + str(hphc)
-print "Connecting to " + url
-response = urllib.urlopen(url).read()
+print 'Connecting to ' + url
+try:
+	response = urllib2.urlopen(url,timeout=5).read()
+	print 'Return: ' + response
+except:
+	print 'Error: wifi probably down - Restarting wifi'
+	subprocess.call('./restart_wifi.sh', shell=True)
