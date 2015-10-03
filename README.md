@@ -41,7 +41,20 @@ La table MySQL est organisée comme le montre la figure ci-dessous.
 
 ![Structure de la table MySQL](http://robinroche.com/webpage/images/Table.PNG)
 
-Sur le RPi, il est également nécessaire de désactiver l'utilisation du port série par Linux, en suivant les [instructions décrites ici](http://elinux.org/RPi_Serial_Connection#Preventing_Linux_using_the_serial_port).
+### Installation
+
+Sur le RPi :
+
+- Copier le contenu du fichier lecture_teleinfo.py dans un nouveau fichier dans le répertoire /home/pi.
+- Dans ce fichier, modifier l'adresse du serveur et le mot de passe.
+- Désactiver l'utilisation du port série par Linux, en suivant les [instructions décrites ici](http://elinux.org/RPi_Serial_Connection#Preventing_Linux_using_the_serial_port).
+- Lancer le script lecture_teleinfo.py à chaque minute via cron.
+
+Sur le serveur :
+
+- Créer la base de données et la table comme indiqué plus haut.
+- Uploader les deux fichiers PHP, et modifier les logins/mdp pour l'accès à la base de données.
+- Dans upload_data.php, modifier le mot de passe pour qu'il corresponde à celui entré sur le RPi.
 
 ### Exemples de résultats
 
