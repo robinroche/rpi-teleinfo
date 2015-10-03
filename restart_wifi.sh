@@ -8,5 +8,5 @@ then
     ifdown --force wlan0                     
     ifup wlan0                               
 else                                        
-    logger -t $0 "wifi seems up"           
-fi               
+    echo "wifi seems up"           
+fi
